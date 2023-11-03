@@ -1,0 +1,14 @@
+Source: prometheus-exporter-proxy
+Section: web
+Priority: optional
+Maintainer: Sorah Fukumori <her@sorah.jp>
+Build-Depends: debhelper-compat (= 12), git, golang-1.20
+Standards-Version: 3.9.4
+Homepage: https://github.com/rrreeeyyy/exporter_proxy
+Vcs-Git: https://github.com/nkmideb/exporter-proxy
+Vcs-Browser: https://github.com/nkmideb/exporter-proxy
+
+Package: prometheus-exporter-proxy
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Simple reverse proxy for prometheus exporters.

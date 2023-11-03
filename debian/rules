@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+export DH_GOPKG=github.com/rrreeeyyy/exporter_proxy
+export GOPATH=/tmp/exporter_proxy-build-gopath
+export PATH=${GOPATH}/bin:/usr/lib/go-1.20/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/local/go/bin/:/go/bin/
+PKGNAME=prometheus-exporter-proxy
+
+%:
+	dh $@
+
+GOPKGDIR="${GOPATH}/src/${DH_GOPKG}"
+
+override_dh_auto_configure:
+	mkdir -p "${GOPATH}/src/$(dir ${DH_GOPKG})"
+	mkdir -p "${GOPATH}/bin"
+	ln -sf "${CURDIR}" "${GOPKGDIR}"
+	go get -d -v
+
+override_dh_auto_build:
+	go build -o bin/exporter_proxy
+
+override_dh_auto_install:
+	mkdir -p debian/${PKGNAME}/usr/bin
+	install -Dm0755 bin/exporter_proxy "debian/${PKGNAME}/usr/bin/prometheus-exporter-proxy"
+	install -Dm0644 config.example.yml "debian/${PKGNAME}/etc/prometheus-exporter-proxy/config.yml"
+
+override_dh_auto_test:
+	true
+
+override_dh_auto_clean:
+	rm -rf ${GOPATH}
+	rm -rf bin/ pkg/
+
+override_dh_installsystemd:
+	dh_installsystemd --restart-after-upgrade --no-enable --no-start
+
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=933541
+override_dh_dwz:
+	dh_dwz || :

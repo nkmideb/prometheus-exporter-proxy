@@ -1,0 +1,7 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: exporter_proxy
+Source: <http://github.com/rrreeeyyy/exporter_proxy>
+
+Files: *
+Copyright: 2017 Yoshikawa Ryota <yoshikawa@rrreeeyyy.com>
+License: MIT
