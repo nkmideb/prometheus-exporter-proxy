@@ -5,7 +5,7 @@
 export DH_VERBOSE=1
 export DH_GOPKG=github.com/rrreeeyyy/exporter_proxy
 export GOPATH=/tmp/exporter_proxy-build-gopath
-export PATH=${GOPATH}/bin:/usr/lib/go-1.20/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/local/go/bin/:/go/bin/
+export PATH=${GOPATH}/bin:/usr/lib/go-1.21/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/local/go/bin/:/go/bin/
 PKGNAME=prometheus-exporter-proxy
 
 %:
